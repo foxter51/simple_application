@@ -1,0 +1,7 @@
+---
+checks:
+# Here the needed checks will be added
+# Example:
+#   - UnusedMethod
+#   - ClassLength
+#   - ...
