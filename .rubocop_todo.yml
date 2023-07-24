@@ -11,6 +11,10 @@
 Layout/EmptyLineAfterGuardClause:
   Exclude:
     - 'bin/bundle'
+    - 'bin/**/*'
+    - 'db/schema.rb'
+    - 'tmp/**/*'
+    - 'vendor/**/*.rb'
 
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
