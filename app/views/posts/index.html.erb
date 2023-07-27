@@ -1,0 +1,10 @@
+<h1>Posts</h1>
+
+<% @posts.each do |post| %>
+  <div>
+    <%= link_to post.title, post %>
+  </div>
+<% end %>
+
+<div><%= link_to 'Home', root_path %></div>
+<div><%= link_to 'Back', :back %></div>

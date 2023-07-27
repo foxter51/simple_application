@@ -1,0 +1,22 @@
+<h1>EDIT: <%= @post.title %></h1>
+
+<%= form_for @post, url: {action: :update}  do |f| %>
+  <%= "<div>#{@post.errors.full_messages.first}</div>".html_safe if @post.errors.any? %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title, maxlength: 100, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :body %><br />
+    <%= f.text_area :body, maxlength: 255, cols: 97, rows: 10, style: "resize:none" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+
+<div><%= link_to 'Posts', posts_path %></div>
+<div><%= link_to 'Back', :back %></div>

@@ -1,0 +1,11 @@
+<h1><%= @post.title %> </h1>
+
+<div>
+  <%= @post.body %>
+  <div>
+    <div><%= link_to 'Posts', posts_path %></div>
+    <div><%= link_to 'Back', :back %></div>
+    <div><%= link_to 'Edit', {controller: 'posts', action: 'edit'} %></div>
+    <div><%= button_to 'Delete', @post, method: :delete %></div>
+  </div>
+</div>
