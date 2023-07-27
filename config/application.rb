@@ -11,6 +11,10 @@ module SimpleApplication
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    config.action_mailer.perform_deliveries = true
+
+    config.action_mailer.raise_delivery_errors = true
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
