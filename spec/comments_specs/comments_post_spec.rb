@@ -22,7 +22,7 @@ RSpec.describe CommentsController, type: :request do
     it "doesn't create a new comment" do
       expect do
         post post_comments_path(post, invalid_comment)
-        expect(response).to have_http_status(302)
+        expect(flash[:notice]).to eq('Comment was not added due to the error!')
       end
     end
   end

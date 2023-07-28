@@ -2,32 +2,35 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   def index
-    @post = Post.find(params[:post_id])
-    @comments = @post.comments
+    @comments = post.comments
   end
 
   def new
-    @post = Post.find(params[:post_id])
-    @comment = @post.comments.build
+    @comment = post.comments.new
   end
 
   def create
-    @post = Post.find(params[:post_id])
-    @comment = @post.comments.build(comment_params)
-    @comment.user = current_user
-    @comment.save if @comment.valid?
-    redirect_to @post
+    @comment = post.comments.new(comment_params)
+    if @comment.valid?
+      @comment.save
+      redirect_to @post
+    else
+      redirect_to @post, notice: "Comment was not added due to the error!"
+    end
   end
 
   def destroy
-    @post = Post.find(params[:post_id])
-    @comment = @post.comments.find(params[:id]).destroy
-    redirect_to @post
+    Comment.find(params[:id]).destroy
+    redirect_to post
   end
 
   private
 
+  def post
+    @post ||= Post.find(params[:post_id])
+  end
+
   def comment_params
-    params.require(:comment).permit(:text)
+    params.require(:comment).permit(:text).merge(user: current_user)
   end
 end
