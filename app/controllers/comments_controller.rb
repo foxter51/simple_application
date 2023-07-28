@@ -1,27 +1,27 @@
 # Represents Comments controller
 class CommentsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :post
   def index
-    @comments = post.comments
+    @comments = @post.comments
   end
 
   def new
-    @comment = post.comments.new
+    @comment = @post.comments.new
   end
 
   def create
-    @comment = post.comments.new(comment_params)
+    @comment = @post.comments.new(comment_params)
     if @comment.valid?
       @comment.save
-      redirect_to post
+      redirect_to @post
     else
-      redirect_to post, notice: "Comment was not added due to the error!"
+      redirect_to @post, notice: "Comment was not added due to the error!"
     end
   end
 
   def destroy
     Comment.find(params[:id]).destroy
-    redirect_to post
+    redirect_to @post
   end
 
   private
