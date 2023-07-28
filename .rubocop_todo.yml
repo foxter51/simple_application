@@ -50,6 +50,10 @@ Metrics/MethodLength:
 Metrics/PerceivedComplexity:
   Max: 9
 
+Style/BlockComments:
+  Exclude:
+  - 'spec/spec_helper.rb'
+
 # Offense count: 2
 # This cop supports unsafe autocorrection (--autocorrect-all).
 # Configuration parameters: EnforcedStyle.
