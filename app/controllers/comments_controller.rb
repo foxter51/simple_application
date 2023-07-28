@@ -13,9 +13,9 @@ class CommentsController < ApplicationController
     @comment = post.comments.new(comment_params)
     if @comment.valid?
       @comment.save
-      redirect_to @post
+      redirect_to post
     else
-      redirect_to @post, notice: "Comment was not added due to the error!"
+      redirect_to post, notice: "Comment was not added due to the error!"
     end
   end
 
