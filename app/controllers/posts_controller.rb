@@ -1,9 +1,10 @@
 # Represents tests controller
 class PostsController < ApplicationController
+  include Pagy::Backend
   before_action :authenticate_user!
 
   def index
-    @posts = Post.all
+    @pagy, @posts = pagy(Post.all)
   end
 
   def new
