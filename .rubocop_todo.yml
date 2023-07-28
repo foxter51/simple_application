@@ -19,8 +19,6 @@ Layout/EmptyLineAfterGuardClause:
 Metrics/BlockLength:
   Exclude:
     - 'config/environments/*.rb'
-    - 'db/schema.rb'
-    - 'spec/posts_request_spec.rb'
 
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
