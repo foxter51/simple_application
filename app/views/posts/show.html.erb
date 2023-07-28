@@ -9,4 +9,9 @@
     <div><%= link_to 'Edit', {controller: 'posts', action: 'edit'} %></div>
     <div><%= button_to 'Delete', @post, method: :delete %></div>
   </nav>
+
+  <div>
+    <%= link_to "Add comment", new_post_comment_path(@post) %>
+    <%= render @post.comments %>
+  </div>
 </div>
