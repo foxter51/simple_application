@@ -1,6 +1,6 @@
 # Represents Comments controller
 class CommentsController < ApplicationController
-  before_action :authenticate_user!, :post
+  before_action :authenticate_user!, :set_post
 
   def new
     @comment = @post.comments.new
@@ -28,7 +28,7 @@ class CommentsController < ApplicationController
 
   private
 
-  def post
+  def set_post
     @post ||= Post.find_by(id: params[:post_id])
   end
 
