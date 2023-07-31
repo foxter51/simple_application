@@ -1,0 +1,6 @@
+<div>
+  <p>
+    <strong><%= comment.user.name %></strong>: <%= comment.text %>
+    <%= button_to 'Delete', post_comment_path({post_id: @post.id, id: comment.id}), method: :delete %>
+  </p>
+</div>
