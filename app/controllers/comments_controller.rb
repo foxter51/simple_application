@@ -1,9 +1,6 @@
 # Represents Comments controller
 class CommentsController < ApplicationController
   before_action :authenticate_user!, :post
-  def index
-    @comments = @post.comments
-  end
 
   def new
     @comment = @post.comments.new
@@ -20,14 +17,19 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    Comment.find(params[:id]).destroy
-    redirect_to @post
+    @comment = Comment.find_by(id: params[:id])
+    if @comment
+      @comment.destroy
+      redirect_to @post
+    else
+      redirect_to @post, notice: "Comment was not found!"
+    end
   end
 
   private
 
   def post
-    @post ||= Post.find(params[:post_id])
+    @post ||= Post.find_by(id: params[:post_id])
   end
 
   def comment_params

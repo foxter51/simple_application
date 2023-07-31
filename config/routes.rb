@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   get 'welcome/index'
   root 'welcome#index'
   resources :posts do
-    resources :comments
+    resources :likes, only: %i[create destroy]
+    resources :comments do
+      resources :likes, only: %i[create destroy]
+    end
   end
 end
