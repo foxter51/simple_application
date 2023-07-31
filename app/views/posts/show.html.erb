@@ -17,6 +17,10 @@ Likes count: <%= @post.likes_count %>
 <div>
   <%= @post.body %>
 
+  <% if @post.pic.attached? %>
+    <image style="width: 100px; height: 100px;" src = "<%= (url_for(@post.pic)) %>"></image>
+  <% end %>
+
   <nav style="display: flex; justify-content: space-between; width: 300px">
     <div><%= link_to 'Back', :back %></div>
     <div><%= link_to 'Posts', posts_path %></div>
