@@ -4,6 +4,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes
 
+  has_one_attached :avatar
+
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :confirmable,
