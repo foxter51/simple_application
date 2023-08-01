@@ -2,6 +2,7 @@
 
 <%= form_for @post, url: {action: :update}  do |f| %>
   <%= "<div>#{@post.errors.full_messages.first}</div>".html_safe if @post.errors.any? %>
+  <p class="notice"><%= notice %></p>
 
   <div class="field">
     <%= f.label :title %><br />

@@ -1,7 +1,7 @@
 # Represents tests controller
 class PostsController < ApplicationController
   include Pagy::Backend
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :post
 
   def index
     @pagy, @posts = pagy(Post.all)
@@ -12,41 +12,48 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.build(post_params)
+    @post = current_user.posts.new(post_params)
     if @post.valid?
       @post.save
       redirect_to @post
     else
-      render :new
+      render :new, notice: "Check your post for validity!"
     end
   end
 
   def update
-    @post = Post.find(params[:id])
     @post.assign_attributes(post_params)
 
     if @post.valid?
       @post.save
       redirect_to @post
     else
-      render :edit
+      render :edit, notice: "Check your post for validity!"
     end
   end
 
   def destroy
-    @post = Post.find(params[:id]).destroy
-    redirect_to posts_path
+    if @post
+      @post.destroy
+      redirect_to posts_path
+    else
+      redirect_to @post, notice: "Post was not found!"
+    end
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post
   end
 
   def edit
-    @post = Post.find(params[:id])
+    @post
   end
 
   private
+
+  def post
+    @post ||= Post.find_by(id: params[:id])
+  end
 
   def post_params
     params.require(:post).permit(:title, :body)

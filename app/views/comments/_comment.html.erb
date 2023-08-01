@@ -1,6 +1,19 @@
 <div>
   <p>
     <strong><%= comment.user.name %></strong>: <%= comment.text %>
-    <%= button_to 'Delete', post_comment_path({post_id: @post.id, id: comment.id}), method: :delete %>
+     | Likes count: <%= comment.likes_count %>
+    <%= button_to 'Delete', post_comment_path(post_id: @post.id, id: comment.id), method: :delete %>
+    <% like = current_user.likes.find_by(likeable_id: comment.id, likeable_type: comment.class.to_s) %>
+    <% if like.nil? %>
+    <%= button_to 'Like',  post_comment_likes_path(post_id: @post.id, comment_id: comment.id),
+                params: {
+                  like: {
+                    likeable_id: comment.id,
+                    likeable_type: comment.class.to_s
+                  }
+                }, method: :post %>
+    <% else %>
+    <%= button_to 'Unlike',  post_comment_like_path(post_id: @post.id, comment_id: comment.id, id: like), method: :delete %>
+    <% end %>
   </p>
 </div>
