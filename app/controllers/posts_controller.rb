@@ -1,7 +1,8 @@
 # Represents tests controller
 class PostsController < ApplicationController
   include Pagy::Backend
-  before_action :authenticate_user!, :post
+  before_action :authenticate_user!
+  before_action :set_post, except: %(index new create)
 
   def index
     @pagy, @posts = pagy(Post.all)
@@ -51,7 +52,7 @@ class PostsController < ApplicationController
 
   private
 
-  def post
+  def set_post
     @post ||= Post.find_by(id: params[:id])
   end
 

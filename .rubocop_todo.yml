@@ -20,6 +20,12 @@ Metrics/BlockLength:
   Exclude:
     - 'config/environments/*.rb'
 
+Naming/MemoizedInstanceVariableName:
+  Exclude:
+    - 'app/controllers/posts_controller.rb'
+    - 'app/controllers/comments_controller.rb'
+    - 'app/controllers/likes_controller.rb'
+
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBrackets.
