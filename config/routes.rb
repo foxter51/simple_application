@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/show'
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
   get 'welcome/index'
@@ -9,4 +10,5 @@ Rails.application.routes.draw do
       resources :likes, only: %i[create destroy]
     end
   end
+  resources :users
 end
