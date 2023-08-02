@@ -6,6 +6,8 @@
   <div><%= link_to 'New Post', new_post_path %></div>
 </nav>
 
+<p class="notice"><%= flash[:warning] %></p>
+
 <div style="margin: 20px">
   <% @posts.each do |post| %>
     <div>
