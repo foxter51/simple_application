@@ -52,6 +52,10 @@ gem 'dotenv-rails'
 
 gem 'pagy'
 
+gem 'pundit'
+
+gem 'rolify'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

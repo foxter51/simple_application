@@ -8,6 +8,11 @@
 
 # Offense count: 6
 # This cop supports safe autocorrection (--autocorrect).
+
+AllCops:
+  Exclude:
+    - 'db/**/*'
+
 Layout/EmptyLineAfterGuardClause:
   Exclude:
     - 'bin/bundle'

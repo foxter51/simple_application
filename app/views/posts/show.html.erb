@@ -1,16 +1,19 @@
 <h1><%= @post.title %> </h1>
+<p class="notice"><%= flash[:warning] %></p>
 Likes count: <%= @post.likes_count %>
-<% like = current_user.likes.find_by(likeable_id: @post.id, likeable_type: @post.class.to_s) %>
-<% if like.nil? %>
-  <%= button_to 'Like',  post_likes_path(post_id: @post.id),
-                params: {
-                  like: {
-                    likeable_id: @post.id,
-                    likeable_type: @post.class.to_s
-                  }
-                }, method: :post %>
-<% else %>
-  <%= button_to 'Unlike',  post_like_path(post_id: @post.id, id: like), method: :delete %>
+<% if user_signed_in? %>
+  <% like = current_user.likes.find_by(likeable_id: @post.id, likeable_type: @post.class.to_s) %>
+  <% if like.nil? %>
+    <%= button_to 'Like',  post_likes_path(post_id: @post.id),
+                  params: {
+                    like: {
+                      likeable_id: @post.id,
+                      likeable_type: @post.class.to_s
+                    }
+                  }, method: :post %>
+  <% else %>
+    <%= button_to 'Unlike',  post_like_path(post_id: @post.id, id: like), method: :delete %>
+  <% end %>
 <% end %>
 <hr>
 
@@ -24,7 +27,7 @@ Likes count: <%= @post.likes_count %>
   <nav style="display: flex; justify-content: space-between; width: 300px">
     <div><%= link_to 'Back', :back %></div>
     <div><%= link_to 'Posts', posts_path %></div>
-    <div><%= link_to 'Edit', {controller: 'posts', action: 'edit'} %></div>
+    <div><%= link_to 'Edit', edit_post_path %></div>
     <div><%= button_to 'Delete', @post, method: :delete %></div>
   </nav>
 
