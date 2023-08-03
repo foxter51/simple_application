@@ -4,7 +4,7 @@
      | Likes count: <%= comment.likes_count %>
     <%= button_to 'Delete', post_comment_path(post_id: @post.id, id: comment.id), method: :delete %>
     <% if user_signed_in? %>
-      <% like = current_user.likes.find_by(likeable_id: comment.id, likeable_type: comment.class.to_s) %>
+      <% like = comment.likes.find_by(likeable_id: comment.id, likeable_type: comment.class.to_s) %>
       <% if like.nil? %>
         <%= button_to 'Like',  post_comment_likes_path(post_id: @post.id, comment_id: comment.id),
                       params: {
@@ -14,7 +14,7 @@
                         }
                       }, method: :post %>
       <% else %>
-        <%= button_to 'Unlike',  post_comment_like_path(post_id: @post.id, comment_id: comment.id, id: like), method: :delete %>
+        <%= button_to 'Unlike',  post_comment_like_path(post_id: @post.id, comment_id: comment.id, id: like.id), method: :delete %>
       <% end %>
     <% end %>
   </p>

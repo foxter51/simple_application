@@ -2,18 +2,20 @@
 class PostsController < ApplicationController
   include Pagy::Backend
   before_action :set_post, except: %(index new create)
-  before_action :set_post_policy
+  before_action :set_post_policy, except: %(index new create)
 
   def index
+    authorize Post
     @pagy, @posts = pagy(Post.all)
   end
 
   def new
+    authorize Post
     @post = Post.new
-    set_post_policy
   end
 
   def create
+    authorize Post
     @post = current_user.posts.new(post_params)
     if @post.valid?
       @post.save

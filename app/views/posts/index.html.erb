@@ -9,7 +9,7 @@
 <p class="notice"><%= flash[:warning] %></p>
 
 <div style="margin: 20px">
-  <% @posts.each do |post| %>
+  <% @posts.order(created_at: :desc).each do |post| %>
     <div>
       <%= link_to post.title, post %>
     </div>
