@@ -30,6 +30,7 @@ Naming/MemoizedInstanceVariableName:
     - 'app/controllers/posts_controller.rb'
     - 'app/controllers/comments_controller.rb'
     - 'app/controllers/likes_controller.rb'
+    - 'app/controllers/users_controller.rb'
 
 # Offense count: 2
 # This cop supports safe autocorrection (--autocorrect).

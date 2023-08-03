@@ -1,0 +1,15 @@
+<h1>User <%= "#{@user.name} #{@user.lastname}" %></h1>
+
+<h2>About me</h2>
+<%= @user.description %>
+
+<h3>My posts</h3>
+<% @user.posts.each do |post| %>
+  <div>
+    <%= link_to post.title, post %>
+  </div>
+<% end %>
+
+<div class="pag-bar mt-5 pt-5">
+  <%== pagy_bootstrap_nav(@pagy) %>
+</div>
