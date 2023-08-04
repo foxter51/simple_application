@@ -4,7 +4,7 @@ class SubscriptionsController < ApplicationController
 
   def create
     if @user != current_user
-      @user.add_subscriber(current_user, @user)
+      @user.add_subscriber(current_user)
       redirect_to @user, notice: "Successfully subscribed!"
     else
       redirect_to @user, notice: "You cannot subscribe yourself!"

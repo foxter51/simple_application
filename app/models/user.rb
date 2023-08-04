@@ -23,9 +23,9 @@ class User < ApplicationRecord
     add_role(role) unless has_role? role
   end
 
-  def add_subscriber(subscriber, to_subscribe)
+  def add_subscriber(subscriber)
     subscribers.create(subscriber:)
-    subscriber.subscribers.create(subscription: to_subscribe)
+    subscriber.subscribers.create(subscription: self)
   end
 
   def subscribed?(subscriber)
