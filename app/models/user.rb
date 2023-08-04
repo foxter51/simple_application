@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes
+  has_many :subscriptions, class_name: 'Subscription', foreign_key: :subscriber_id, counter_cache: :subscriptions_count
+  has_many :subscribers, class_name: 'Subscription', foreign_key: :subscription_id, counter_cache: :subscribers_count
 
   has_one_attached :avatar
 
@@ -19,6 +21,19 @@ class User < ApplicationRecord
 
   def add_another_role(role)
     add_role(role) unless has_role? role
+  end
+
+  def add_subscriber(subscriber, to_subscribe)
+    subscribers.create(subscriber:)
+    subscriber.subscribers.create(subscription: to_subscribe)
+  end
+
+  def subscribed?(subscriber)
+    subscribers.exists?(subscriber:)
+  end
+
+  def remove_subscriber(subscriber)
+    subscribers.where(subscriber:).destroy_all
   end
 
   # Include default devise modules. Others available are:
