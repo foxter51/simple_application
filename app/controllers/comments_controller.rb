@@ -1,13 +1,14 @@
 # Represents Comments controller
 class CommentsController < ApplicationController
-  before_action :set_post, :set_comment_policy
+  before_action :set_post
 
   def new
+    authorize Comment
     @comment = @post.comments.new
-    set_comment_policy
   end
 
   def create
+    authorize Comment
     @comment = @post.comments.new(comment_params)
     if @comment.valid?
       @comment.save
@@ -18,8 +19,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find_by(id: params[:id])
-    set_comment_policy
+    @comment = @post.comments.find_by(id: params[:id])
+    authorize @comment if @comment.present?
     if @comment
       @comment.destroy
       redirect_to @post
@@ -32,10 +33,6 @@ class CommentsController < ApplicationController
 
   def set_post
     @post ||= Post.find_by(id: params[:post_id])
-  end
-
-  def set_comment_policy
-    authorize @comment if @comment.present?
   end
 
   def comment_params

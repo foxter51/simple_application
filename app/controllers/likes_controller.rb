@@ -1,8 +1,9 @@
 # Represents Likes controller
 class LikesController < ApplicationController
-  before_action :set_post, :set_like_policy
+  before_action :set_post
 
   def create
+    authorize Like
     @like = current_user.likes.new(like_params)
     if @like.valid?
       @like.save
@@ -14,7 +15,7 @@ class LikesController < ApplicationController
 
   def destroy
     @like = Like.find_by(id: params[:id])
-    set_like_policy
+    authorize @like if @like.present?
     if @like
       @like.destroy
       redirect_to @post
@@ -27,10 +28,6 @@ class LikesController < ApplicationController
 
   def set_post
     @post ||= Post.find_by(id: params[:post_id])
-  end
-
-  def set_like_policy
-    authorize @like if @like.present?
   end
 
   def like_params
