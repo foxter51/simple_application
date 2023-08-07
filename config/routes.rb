@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search', to: 'search#index'
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
   get 'welcome/index'
@@ -12,4 +13,5 @@ Rails.application.routes.draw do
   resources :users do
     resources :subscriptions
   end
+  resources :search
 end

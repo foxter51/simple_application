@@ -52,6 +52,8 @@ gem 'dotenv-rails'
 
 gem 'pagy'
 
+gem 'pg_search'
+
 gem 'pundit'
 
 gem 'rolify'
