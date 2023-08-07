@@ -52,6 +52,8 @@ gem "devise"
 
 gem 'dotenv-rails'
 
+gem 'lograge'
+
 gem 'pagy'
 
 gem 'pundit'
