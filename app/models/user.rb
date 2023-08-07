@@ -36,6 +36,10 @@ class User < ApplicationRecord
     subscribers.where(subscriber:).destroy_all
   end
 
+  def subscribed_posts
+    Post.where(user: subscriptions.map(&:subscription))
+  end
+
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :confirmable,
