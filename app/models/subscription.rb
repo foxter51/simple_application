@@ -8,4 +8,8 @@ class Subscription < ApplicationRecord
   def notify_subscribers
     SubscriptionMailer.new_subscription(subscriber).deliver
   end
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[created_at id subscriber_id subscription_id updated_at]
+  end
 end

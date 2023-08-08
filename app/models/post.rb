@@ -19,4 +19,12 @@ class Post < ApplicationRecord
       SubscriptionMailer.new_post_event_send(self, subscriber.subscriber).deliver
     end
   end
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[body created_at id likes_count title updated_at user_id]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[comments likes pic_attachment pic_blob user]
+  end
 end
