@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'feed/show'
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
   get 'welcome/index'
