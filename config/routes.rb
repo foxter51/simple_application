@@ -6,12 +6,11 @@ Rails.application.routes.draw do
   root 'welcome#index'
   resources :posts do
     resources :likes, only: %i[create destroy]
-    resources :comments do
+    resources :comments, only: %i[new create destroy] do
       resources :likes, only: %i[create destroy]
     end
   end
   resources :users do
-    resources :subscriptions
+    resources :subscriptions, only: %i[create destroy]
   end
-  resources :search
 end
