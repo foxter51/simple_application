@@ -5,6 +5,10 @@
   <%= image_tag(current_user.avatar, width: 30, height: 30) if current_user.avatar.attached? %>
   <strong><%= "#{current_user.name} #{current_user.lastname}" %></strong> |
   <%= link_to "Logout", destroy_user_session_path, method: :get, class: 'navbar-link'  %>
+  <%= form_tag search_path, method: :get do %>
+    <%= text_field_tag :query, params[:query] %>
+    <%= submit_tag "Search" %>
+  <% end %>
   <hr>
   <strong><%= link_to 'Home', feed_index_path %></strong>
   <%= link_to 'My profile', current_user %>
