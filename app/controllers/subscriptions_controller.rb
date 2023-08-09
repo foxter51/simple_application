@@ -3,12 +3,13 @@ class SubscriptionsController < ApplicationController
   before_action :set_user
 
   def create
-    if @user != current_user
-      @user.add_subscriber(current_user)
-      redirect_to @user, notice: "Successfully subscribed!"
-    else
-      redirect_to @user, notice: "You cannot subscribe yourself!"
-    end
+    raise SelfSubscriptionException, 'Self subscription error' if @user == current_user
+
+    @user.add_subscriber(current_user)
+    redirect_to @user, notice: "Successfully subscribed!"
+  rescue SelfSubscriptionException => e
+    Rails.logger.error "You cannot subscribe yourself: #{e.message}"
+    redirect_to @user, notice: e.message
   end
 
   def destroy
