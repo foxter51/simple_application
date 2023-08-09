@@ -1,5 +1,3 @@
-require_relative '../exceptions/searchable_not_found_exception'
-
 # Represents controller for search ability
 class SearchController < ApplicationController
   include Pagy::Backend

@@ -1,5 +1,3 @@
-require_relative '../exceptions/self_subscription_exception'
-
 # Represents Subscription controller
 class SubscriptionsController < ApplicationController
   before_action :set_user

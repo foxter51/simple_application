@@ -1,5 +1,3 @@
-require_relative '../exceptions/subscriptions_not_found_exception'
-
 # Represents Feed controller
 class FeedController < ApplicationController
   include Pagy::Backend
