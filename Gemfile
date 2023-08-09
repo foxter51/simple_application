@@ -50,9 +50,13 @@ gem "devise"
 
 gem 'dotenv-rails'
 
+gem 'hiredis'
+
 gem 'pagy'
 
 gem 'pundit'
+
+gem 'redis'
 
 gem 'rolify'
 

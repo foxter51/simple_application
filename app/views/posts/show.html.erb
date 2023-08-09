@@ -35,6 +35,6 @@ Likes count: <%= @post.likes_count %>
   <div>
     <%= link_to "Add comment", new_post_comment_path(@post) %>
     <p class="notice"><%= notice %></p>
-    <%= render @post.comments.order(created_at: :desc) %>
+    <%= render @post.comments.order(created_at: :desc), cached: true %>
   </div>
 </div>
