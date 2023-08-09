@@ -1,3 +1,5 @@
+require_relative '../exceptions/subscriptions_not_found_exception'
+
 # Represents Feed controller
 class FeedController < ApplicationController
   include Pagy::Backend
@@ -6,5 +8,9 @@ class FeedController < ApplicationController
 
   def index
     @pagy, @posts = pagy(current_user.subscribed_posts)
+    raise SubscriptionsNotFoundException, 'Subscriptions not found' if @posts.empty?
+  rescue SubscriptionsNotFoundException => e
+    Rails.logger.error "Subscriptions are empty: #{e.message}"
+    redirect_to posts_path, notice: e.message
   end
 end
