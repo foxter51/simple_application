@@ -41,6 +41,15 @@ class User < ApplicationRecord
     subscribers.where(subscriber:).destroy_all
   end
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[confirmation_sent_at confirmation_token confirmed_at created_at description email encrypted_password id lastname name remember_created_at
+       reset_password_sent_at reset_password_token subscribers_count subscriptions_count unconfirmed_email updated_at]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[avatar_attachment avatar_blob comments likes posts roles subscribers subscriptions]
+  end
+  
   def subscribed_posts
     Post.where(user: subscriptions.map(&:subscription))
   end

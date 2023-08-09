@@ -39,6 +39,8 @@ gem "jbuilder"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
+gem 'activeadmin', github: 'activeadmin/activeadmin', branch: 'master'
+
 gem 'aws-sdk-s3', require: false
 
 # Reduces boot times through caching; required in config/boot.rb
@@ -61,6 +63,8 @@ gem 'pg_search'
 gem 'pundit'
 
 gem 'rolify'
+
+gem 'sass-rails'
 
 gem 'sidekiq'
 
