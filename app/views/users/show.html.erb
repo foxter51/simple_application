@@ -1,9 +1,5 @@
 <h1>User <%= "#{@user.name} #{@user.lastname}" %></h1>
 
-<h2>About me</h2>
-<%= @user.description %>
-
-<h3>My posts</h3>
 <% if @user.subscribed?(current_user) %>
   <%= button_to 'Unsubscribe', user_subscription_path(@user), method: :delete %>
 <% else %>
@@ -11,6 +7,15 @@
 <% end %>
 Subscribers: <%= @user.subscriptions_count %>
 Subscriptions: <%= @user.subscribers_count %>
+
+<% unless @user.description.blank? %>
+  <h2>About me</h2>
+<% end %>
+<%= @user.description %>
+
+<% unless @user.posts.empty? %>
+  <h3>My posts</h3>
+<% end %>
 <% @user.posts.each do |post| %>
   <div>
     <%= link_to post.title, post %>

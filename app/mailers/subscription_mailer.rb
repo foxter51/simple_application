@@ -15,4 +15,12 @@ class SubscriptionMailer < ApplicationMailer
     mail to: @subscriber.email,
          subject: "New post from #{@post.user.name} #{@post.user.lastname}"
   end
+
+  def top10_posts_by_clock(user, posts)
+    @posts = posts
+    @subscriber = user
+
+    mail to: @subscriber.email,
+         subject: "Daily posts are waiting for you!"
+  end
 end

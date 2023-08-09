@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   resources :users do
     resources :subscriptions, only: %i[create destroy]
   end
+  resources :feed
 end
