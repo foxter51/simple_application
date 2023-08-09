@@ -48,17 +48,25 @@ gem "bootsnap", require: false
 
 gem 'bootstrap-sass'
 
+gem 'clockwork'
+
 gem "devise"
 
 gem 'dotenv-rails'
 
+gem 'lograge'
+
 gem 'pagy'
+
+gem 'pg_search'
 
 gem 'pundit'
 
 gem 'rolify'
 
 gem 'sass-rails'
+
+gem 'sidekiq'
 
 # Use Sass to process CSS
 # gem "sassc-rails"

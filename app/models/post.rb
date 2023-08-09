@@ -1,6 +1,11 @@
 # Represents Post model
 class Post < ApplicationRecord
+  include PgSearch::Model
+
+  multisearchable against: [:title, :body]
+
   after_create :notify_subscribers
+  after_save :reindex
 
   belongs_to :user
 
@@ -26,5 +31,11 @@ class Post < ApplicationRecord
 
   def self.ransackable_associations(_auth_object = nil)
     %w[comments likes pic_attachment pic_blob user]
+  end
+  
+  private
+
+  def reindex
+    PgSearch::Multisearch.rebuild(Post)
   end
 end
