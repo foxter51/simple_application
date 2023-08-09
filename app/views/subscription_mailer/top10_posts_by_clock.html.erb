@@ -1,0 +1,6 @@
+<p>Welcome <%= "#{@subscriber.name} #{@subscriber.lastname}" %>!</p>
+
+<p>You have new posts by daily subscription: </p>
+<% @posts.each do |post| %>
+  <p><%= link_to post.title, post %></p>
+<% end %> %>
