@@ -1,6 +1,11 @@
 # Represents Post model
 class Post < ApplicationRecord
+  include PgSearch::Model
+
+  multisearchable against: [:title, :body]
+
   after_create :notify_subscribers
+  after_save :reindex
 
   belongs_to :user
 
@@ -18,5 +23,11 @@ class Post < ApplicationRecord
     subscribers.each do |subscriber|
       SubscriptionMailer.new_post_event_send(self, subscriber.subscriber).deliver
     end
+  end
+
+  private
+
+  def reindex
+    PgSearch::Multisearch.rebuild(Post)
   end
 end

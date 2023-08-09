@@ -56,6 +56,8 @@ gem 'lograge'
 
 gem 'pagy'
 
+gem 'pg_search'
+
 gem 'pundit'
 
 gem 'rolify'
