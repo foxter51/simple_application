@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   resources :users do
     resources :subscriptions
   end
+  resources :feed
 end
