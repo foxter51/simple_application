@@ -54,6 +54,8 @@ gem "devise"
 
 gem 'dotenv-rails'
 
+gem 'hiredis'
+
 gem 'lograge'
 
 gem 'pagy'
@@ -61,6 +63,8 @@ gem 'pagy'
 gem 'pg_search'
 
 gem 'pundit'
+
+gem 'redis'
 
 gem 'rolify'
 

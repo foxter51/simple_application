@@ -46,6 +46,6 @@ Likes count: <%= @post.likes_count %>
 
   <div>
     <p class="notice"><%= notice %></p>
-    <%= render @post.comments.order(created_at: :desc) %>
+    <%= render @post.comments.order(created_at: :desc), cached: true %>
   </div>
 </div>

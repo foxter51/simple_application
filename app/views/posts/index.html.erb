@@ -9,9 +9,11 @@
 
 <div style="margin: 20px">
   <% @posts.order(created_at: :desc).each do |post| %>
-    <div>
-      <%= link_to post.title, post %>
-    </div>
+    <% cache post do %>
+      <div>
+        <%= link_to post.title, post %>
+      </div>
+    <% end %>
   <% end %>
 </div>
 
