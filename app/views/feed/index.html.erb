@@ -1,22 +1,21 @@
-<h1>Posts</h1>
+<h1>Feed</h1>
 
 <nav style="display: flex; justify-content: space-between; width: 300px">
   <div><%= link_to 'Back', :back %></div>
-  <div><%= link_to 'New Post', new_post_path %></div>
 </nav>
 
 <p class="notice"><%= flash[:warning] %></p>
 
 <div style="margin: 20px">
   <% @posts.order(created_at: :desc).each do |post| %>
-    <% cache post do %>
-      <div>
-        <%= link_to post.title, post %>
-      </div>
-    <% end %>
+    <div>
+      <%= link_to post.title, post %>
+    </div>
   <% end %>
 </div>
 
 <div class="pag-bar mt-5 pt-5">
   <%== pagy_bootstrap_nav(@pagy) %>
 </div>
+
+

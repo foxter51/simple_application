@@ -1,6 +1,9 @@
-<h1><%= @post.title %> </h1>
-<h2><%= link_to "#{@post.user.name} #{@post.user.lastname}", @post.user %> </h2>
-<p class="notice"><%= flash[:warning] %></p>
+<h1>
+  <%= @post.title %>
+  |
+  <%= link_to "#{@post.user.name} #{@post.user.lastname}", @post.user %>
+</h1>
+
 Likes count: <%= @post.likes_count %>
 <% if user_signed_in? %>
   <% like = current_user.likes.find_by(likeable_id: @post.id, likeable_type: @post.class.to_s) %>
@@ -16,6 +19,9 @@ Likes count: <%= @post.likes_count %>
     <%= button_to 'Unlike',  post_like_path(post_id: @post.id, id: like), method: :delete %>
   <% end %>
 <% end %>
+
+<p class="notice"><%= flash[:warning] %></p>
+
 <hr>
 
 <div>
@@ -25,15 +31,20 @@ Likes count: <%= @post.likes_count %>
     <image style="width: 100px; height: 100px;" src = "<%= (url_for(@post.pic)) %>"></image>
   <% end %>
 
+  <hr>
+
   <nav style="display: flex; justify-content: space-between; width: 300px">
     <div><%= link_to 'Back', :back %></div>
-    <div><%= link_to 'Posts', posts_path %></div>
     <div><%= link_to 'Edit', edit_post_path %></div>
     <div><%= button_to 'Delete', @post, method: :delete %></div>
+    <%= link_to "Add comment", new_post_comment_path(@post) %>
   </nav>
 
+  <% unless @post.comments.empty? %>
+    <hr><h2>Comments</h2>
+  <% end %>
+
   <div>
-    <%= link_to "Add comment", new_post_comment_path(@post) %>
     <p class="notice"><%= notice %></p>
     <%= render @post.comments.order(created_at: :desc), cached: true %>
   </div>
